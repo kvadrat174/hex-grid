@@ -1,6 +1,9 @@
 {
-  "name": "hex-grid-darwin-universal",
+  "name": "@kvadrat74/hex-grid-darwin-universal",
   "version": "0.0.11",
+  "repository": {
+    "url": "git+https://github.com/kvadrat174/hex-grid.git"
+  },
   "os": [
     "darwin"
   ],

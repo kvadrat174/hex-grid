@@ -1,6 +1,9 @@
 {
-  "name": "hex-grid-android-arm64",
+  "name": "@kvadrat74/hex-grid-android-arm64",
   "version": "0.0.11",
+  "repository": {
+    "url": "git+https://github.com/kvadrat174/hex-grid.git"
+  },
   "os": [
     "android"
   ],

@@ -1,6 +1,9 @@
 {
-  "name": "hex-grid-freebsd-x64",
+  "name": "@kvadrat74/hex-grid-freebsd-x64",
   "version": "0.0.2",
+  "repository": {
+    "url": "git+https://github.com/kvadrat174/hex-grid.git"
+  },
   "os": [
     "freebsd"
   ],
