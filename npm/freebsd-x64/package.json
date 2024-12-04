@@ -1,6 +1,6 @@
 {
   "name": "hex-grid-freebsd-x64",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "os": [
     "freebsd"
   ],

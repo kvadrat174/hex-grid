@@ -1,6 +1,6 @@
 {
   "name": "@kvadrat74/hex-grid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
@@ -52,21 +52,21 @@
   },
   "packageManager": "yarn@4.5.1",
   "optionalDependencies": {
-    "@kvadrat74/hex-grid-win32-x64-msvc": "0.0.1",
-    "@kvadrat74/hex-grid-darwin-x64": "0.0.1",
-    "@kvadrat74/hex-grid-linux-x64-gnu": "0.0.1",
-    "@kvadrat74/hex-grid-darwin-arm64": "0.0.1",
-    "@kvadrat74/hex-grid-android-arm64": "0.0.1",
-    "@kvadrat74/hex-grid-linux-arm64-gnu": "0.0.1",
-    "@kvadrat74/hex-grid-linux-arm64-musl": "0.0.1",
-    "@kvadrat74/hex-grid-win32-arm64-msvc": "0.0.1",
-    "@kvadrat74/hex-grid-linux-arm-gnueabihf": "0.0.1",
-    "@kvadrat74/hex-grid-linux-arm-musleabihf": "0.0.1",
-    "@kvadrat74/hex-grid-linux-x64-musl": "0.0.1",
-    "@kvadrat74/hex-grid-freebsd-x64": "0.0.1",
-    "@kvadrat74/hex-grid-win32-ia32-msvc": "0.0.1",
-    "@kvadrat74/hex-grid-android-arm-eabi": "0.0.1",
-    "@kvadrat74/hex-grid-darwin-universal": "0.0.1",
-    "@kvadrat74/hex-grid-linux-riscv64-gnu": "0.0.1"
+    "@kvadrat74/hex-grid-win32-x64-msvc": "0.0.2",
+    "@kvadrat74/hex-grid-darwin-x64": "0.0.2",
+    "@kvadrat74/hex-grid-linux-x64-gnu": "0.0.2",
+    "@kvadrat74/hex-grid-darwin-arm64": "0.0.2",
+    "@kvadrat74/hex-grid-android-arm64": "0.0.2",
+    "@kvadrat74/hex-grid-linux-arm64-gnu": "0.0.2",
+    "@kvadrat74/hex-grid-linux-arm64-musl": "0.0.2",
+    "@kvadrat74/hex-grid-win32-arm64-msvc": "0.0.2",
+    "@kvadrat74/hex-grid-linux-arm-gnueabihf": "0.0.2",
+    "@kvadrat74/hex-grid-linux-arm-musleabihf": "0.0.2",
+    "@kvadrat74/hex-grid-linux-x64-musl": "0.0.2",
+    "@kvadrat74/hex-grid-freebsd-x64": "0.0.2",
+    "@kvadrat74/hex-grid-win32-ia32-msvc": "0.0.2",
+    "@kvadrat74/hex-grid-android-arm-eabi": "0.0.2",
+    "@kvadrat74/hex-grid-darwin-universal": "0.0.2",
+    "@kvadrat74/hex-grid-linux-riscv64-gnu": "0.0.2"
   }
 }
