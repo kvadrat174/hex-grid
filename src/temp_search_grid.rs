@@ -113,22 +113,7 @@ impl TempSearchGrid {
             Err(format!("Invalid node coordinates: ({}, {})", x, y))
         }
     }
-    pub fn set_node_opened(&mut self, x: usize, y: usize, v: bool) -> Result<(), String> {
-        if let Some(node) = self.nodes.get_mut(y).and_then(|row| row.get_mut(x)) {
-            node.set_opened(v);
-            Ok(())
-        } else {
-            Err(format!("Invalid node coordinates: ({}, {})", x, y))
-        }
-    }
-    pub fn set_node_g(&mut self, x: usize, y: usize, v: f64) -> Result<(), String> {
-        if let Some(node) = self.nodes.get_mut(y).and_then(|row| row.get_mut(x)) {
-            node.set_g(v);
-            Ok(())
-        } else {
-            Err(format!("Invalid node coordinates: ({}, {})", x, y))
-        }
-    }
+
     pub fn set_node_h(&mut self, x: usize, y: usize, v: f64) -> Result<(), String> {
         if let Some(node) = self.nodes.get_mut(y).and_then(|row| row.get_mut(x)) {
             node.set_h(v);
@@ -137,14 +122,7 @@ impl TempSearchGrid {
             Err(format!("Invalid node coordinates: ({}, {})", x, y))
         }
     }
-    pub fn set_node_parent(&mut self, x: usize, y: usize, v: (usize, usize)) -> Result<(), String> {
-        if let Some(node) = self.nodes.get_mut(y).and_then(|row| row.get_mut(x)) {
-            node.set_parent(v);
-            Ok(())
-        } else {
-            Err(format!("Invalid node coordinates: ({}, {})", x, y))
-        }
-    }
+
     pub fn update_node<F>(&mut self, x: usize, y: usize, mut f: F)
     where
         F: FnMut(&mut TempNode),
@@ -155,20 +133,20 @@ impl TempSearchGrid {
             }
         }
     }
-    pub fn get_neighbor_nodes_from_cache(&self, node: &TempNode) -> Result<Vec<TempNode>, String> {
-        // Look up the neighbors from the cache using the node's coordinates
-        let neighbors_coords = self.neighbor_node_cache
-            .get(&(node.x.try_into().unwrap(), node.y.try_into().unwrap())) // Fetch neighbors' coordinates using the (x, y) tuple as the key
-            .ok_or_else(|| format!("Neighbor cache is empty for node at ({}, {})", node.x, node.y))?;
+    // pub fn get_neighbor_nodes_from_cache(&self, node: &TempNode) -> Result<Vec<TempNode>, String> {
+    //     // Look up the neighbors from the cache using the node's coordinates
+    //     let neighbors_coords = self.neighbor_node_cache
+    //         .get(&(node.x.try_into().unwrap(), node.y.try_into().unwrap())) // Fetch neighbors' coordinates using the (x, y) tuple as the key
+    //         .ok_or_else(|| format!("Neighbor cache is empty for node at ({}, {})", node.x, node.y))?;
 
-        // Map coordinates to actual TempNode instances
-        let neighbors: Vec<TempNode> = neighbors_coords
-            .iter()
-            .map(|&(nx, ny)| *self.get_node_at_point((nx.try_into().unwrap(), ny.try_into().unwrap())))
-            .collect();
+    //     // Map coordinates to actual TempNode instances
+    //     let neighbors: Vec<TempNode> = neighbors_coords
+    //         .iter()
+    //         .map(|&(nx, ny)| *self.get_node_at_point((nx.try_into().unwrap(), ny.try_into().unwrap())))
+    //         .collect();
 
-        Ok(neighbors)
-    }
+    //     Ok(neighbors)
+    // }
 
     pub fn get_neighbors_passable_nodes_from_cache(&self, x: usize, y: usize) -> Result<Vec<TempNode>, String> {
         // Get the coordinates of passable neighbors from the cache
@@ -182,14 +160,6 @@ impl TempSearchGrid {
             .collect();
     
         Ok(neighbors)
-    }
-
-    pub fn get_neighbors_passable_node_points_from_cache(&self, x: usize, y: usize) -> &Vec<(usize, usize)> {
-        // Get the coordinates of passable neighbors from the cache
-        let neighbors_coords: &Vec<(usize, usize)> = self.neighbor_passable_nodes_cache
-            .get(&(x, y))
-            .ok_or_else(|| format!("Neighbor passable nodes cache is empty for ({}, {})", x, y)).unwrap();
-        neighbors_coords
     }
 
     pub fn is_node_on_border_of_impassable_area(&self, x: usize, y: usize) -> bool {
@@ -226,41 +196,6 @@ impl TempSearchGrid {
         }
 
         Ok(open_neighbors.into_iter().collect())
-    }
-
-    pub fn get_nodes_within_range(&self, center_x: usize, center_y: usize, range: usize) -> Result<Vec<(usize, usize)>, String> {
-        let mut area = HashSet::new();
-        let mut nodes_of_interest = HashSet::new();
-        let mut done_nodes = HashSet::new();
-
-        area.insert((center_x, center_y));
-        nodes_of_interest.insert((center_x, center_y));
-
-        while !nodes_of_interest.is_empty() {
-            let current = nodes_of_interest.iter().cloned().next().unwrap();
-            nodes_of_interest.remove(&current);
-
-            let neighbors = self.neighbor_node_cache
-                .get(&current)
-                .ok_or_else(|| format!("Cache empty for {:?}", current))?;
-
-            for &neighbor in neighbors {
-                if self.is_node_in_range(center_x, center_y, neighbor.0, neighbor.1, range) {
-                    area.insert(neighbor);
-                    if !done_nodes.contains(&neighbor) {
-                        nodes_of_interest.insert(neighbor);
-                    }
-                }
-            }
-            done_nodes.insert(current);
-        }
-
-        Ok(area.into_iter().collect())
-    }
-
-    pub fn is_node_in_range(&self, x0: usize, y0: usize, x1: usize, y1: usize, range: usize) -> bool {
-        (x1 as isize - x0 as isize).abs() as usize <= range
-            && (y1 as isize - y0 as isize).abs() as usize <= range
     }
 
     fn is_node_passable(&self, x: usize, y: usize) -> bool {

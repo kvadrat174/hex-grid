@@ -6,13 +6,10 @@ use std::collections::{HashMap, HashSet};
 use heap::CustomHeap;
 use napi_derive::napi;
 use serde::Serialize;
-use napi::{bindgen_prelude::*, JsNumber, JsObject};
+use napi::bindgen_prelude::*;
 use serde_json::Value;
 use temp_node::TempNode;
 use temp_search_grid::TempSearchGrid;
-
-#[macro_use]
-extern crate napi_derive;
 
 #[napi(object)]
 pub struct MapHexOptions {
@@ -775,7 +772,7 @@ impl HexGrid {
         
                 // Calculate `g` score (cost to get to this neighbor)
                 let ng = current_g + (1.0 / neighbor.passability);
-                let mut neighbour_f = neighbor.f;
+                let neighbour_f;
                 let mut neighbour_h= neighbor.h;
 
                 if !neighbor.opened.unwrap_or(false) {
