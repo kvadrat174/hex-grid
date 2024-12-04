@@ -1,6 +1,6 @@
 {
   "name": "hex-grid-linux-riscv64-gnu",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "os": [
     "linux"
   ],
