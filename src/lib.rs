@@ -829,7 +829,7 @@ impl HexGrid {
 
     fn heuristic_odd_q(x: usize, y: usize, end_x: i32, end_y: i32) -> f64 {
         // Преобразуем все переменные в f64 для согласованности
-        let x = x as f64;
+        let x: f64 = x as f64;
         let mut y = y as f64;
         let end_x = end_x as f64;
         let mut end_y = end_y as f64;
