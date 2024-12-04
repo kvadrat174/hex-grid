@@ -1,0 +1,4 @@
+require:
+  - './test/fixtures.js'
+spec:
+  - ./test/**/*.test.ts
